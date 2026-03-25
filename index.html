@@ -12,21 +12,18 @@
 
 body{
   font-family:'Poppins',sans-serif;
-  text-align:center;
   color:#4a3f3f;
   overflow-x:hidden;
-  background:linear-gradient(-45deg,#fdf6f7,#f9f0f3,#fceef1,#f8f2f4);
-  background-size:400% 400%;
-  animation:bgMove 20s ease infinite;
 }
 
-@keyframes bgMove{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
+/* ===== UNIVERSAL HERO BACKGROUND FIX ===== */
+.bg-cover{
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
 }
 
-/* INTRO */
+/* ===== INTRO ===== */
 #welcome{
   position:fixed;
   inset:0;
@@ -34,114 +31,93 @@ body{
   justify-content:center;
   align-items:center;
   flex-direction:column;
-  text-align:center;
   padding:20px;
-  background:
-    linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)),
-    url("hero.jpg");
-  background-size:cover;
-  background-position:center;
+  text-align:center;
   z-index:9999;
+
+  background:
+    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+    url("hero.jpg");
 }
+#welcome.bg-cover{}
 
 #welcome h1{
   font-family:'Playfair Display';
-  font-size:clamp(26px,6vw,38px);
+  font-size:clamp(26px,5vw,42px);
   color:white;
-  text-shadow:1px 1px 6px rgba(0,0,0,0.5);
-  margin-bottom:20px;
 }
 
 .openBtn{
+  margin-top:20px;
   padding:14px 28px;
   border:none;
   border-radius:40px;
-  background:linear-gradient(45deg,#d8a7b1,#c48a97);
+  background:#c48a97;
   color:white;
-  font-size:15px;
   cursor:pointer;
 }
 
-/* HERO */
+/* ===== HERO ===== */
 .hero{
-  min-height:70vh;
-  padding:60px 20px 40px;
+  min-height:80vh;
   display:flex;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
+  text-align:center;
+  padding:60px 20px;
+
   background:
-    linear-gradient(rgba(255,255,255,0.65), rgba(255,255,255,0.65)),
+    linear-gradient(rgba(255,255,255,0.55), rgba(255,255,255,0.55)),
     url("hero1.jpg");
-  background-size:cover;
-  background-position:center;
 }
+.hero.bg-cover{}
 
 .hero h1{
   font-family:'Playfair Display';
-  font-size:clamp(28px,7vw,48px);
+  font-size:clamp(32px,5vw,56px);
 }
-
 .subtitle{
   margin-top:10px;
-  font-size:clamp(14px,4vw,18px);
+  font-size:clamp(16px,2vw,20px);
 }
 
-/* CARD */
+/* ===== CONTENT ===== */
 .card{
   max-width:800px;
-  margin:30px 15px;
-  background:rgba(255,255,255,0.85);
-  backdrop-filter:blur(10px);
-  padding:25px 20px;
-  border-radius:18px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  margin:60px auto;
+  padding:40px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.9);
+  box-shadow:0 15px 40px rgba(0,0,0,0.08);
 }
 
 #typing{
-  font-size:clamp(14px,4vw,17px);
-  line-height:1.7em;
+  font-size:clamp(15px,1.2vw,18px);
+  line-height:1.8;
   white-space:pre-line;
 }
 
-/* FLOAT ELEMENTS */
-.layer{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
+/* ===== SECTIONS ===== */
+.salon-promo,
+.qr-promo{
+  max-width:800px;
+  margin:40px auto;
+  padding:35px;
+  border-radius:20px;
 }
 
-.item{
-  position:absolute;
-  animation:float linear infinite;
-}
-
-@keyframes float{
-  from{transform:translateY(100vh);}
-  to{transform:translateY(-10vh);}
-}
-
-/* SALON PROMO */
 .salon-promo{
-  margin:40px 15px;
-  padding:30px 20px;
-  background:#ffffff;
-  border-radius:18px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.05);
+  background:#fff;
 }
 
-.salon-promo h2{
+.qr-promo{
+  background:#f8eef1;
+}
+
+h2,h3{
   font-family:'Playfair Display';
-  color:#c48a97;
-  font-size:clamp(20px,5vw,26px);
 }
 
-.salon-promo p{
-  margin-top:10px;
-  font-size:clamp(14px,4vw,16px);
-}
-
-/* BUTTON */
 .cta{
   margin-top:15px;
   padding:12px 25px;
@@ -149,45 +125,86 @@ body{
   border-radius:30px;
   background:#c48a97;
   color:white;
-  font-size:14px;
   cursor:pointer;
 }
 
-/* QR PROMO */
-.qr-promo{
-  margin:20px 15px 40px;
-  padding:25px 20px;
-  background:#f8eef1;
-  border-radius:18px;
+/* ===== FLOAT ===== */
+.layer{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+}
+.item{
+  position:absolute;
+  animation:float linear infinite;
+}
+@keyframes float{
+  from{transform:translateY(100vh);}
+  to{transform:translateY(-10vh);}
 }
 
-.qr-promo h3{
-  font-family:'Playfair Display';
-  color:#a06b78;
-  font-size:clamp(18px,5vw,24px);
-}
-
-/* FOOTER */
+/* ===== FOOTER ===== */
 .footer{
-  margin-bottom:20px;
-  font-size:13px;
+  text-align:center;
+  margin:40px 0 20px;
   opacity:0.7;
 }
+
+/* ===== MOBILE FIX ===== */
+@media(max-width:768px){
+
+  .hero{
+    min-height:70vh;
+    padding:40px 15px;
+
+    /* JAČI overlay da slika izgleda bolje na mobitelu */
+    background:
+      linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)),
+      url("hero1.jpg");
+  }
+
+  #welcome{
+    background:
+      linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+      url("hero.jpg");
+  }
+
+  .card{
+    margin:30px 15px;
+    padding:25px 20px;
+  }
+
+  .salon-promo,
+  .qr-promo{
+    margin:20px 15px;
+    padding:25px 20px;
+  }
+}
+
+/* ===== LARGE SCREEN FIX ===== */
+@media(min-width:1200px){
+  .hero{
+    min-height:90vh;
+  }
+}
+
 </style>
 </head>
 
 <body>
 
 <!-- INTRO -->
-<div id="welcome">
+<div id="welcome" class="bg-cover">
   <h1>Uskrsno iznenađenje 🌸</h1>
   <button class="openBtn" onclick="startExperience()">Otvori čestitku</button>
 </div>
 
 <!-- HERO -->
-<div class="hero">
-  <h1>Sretan Uskrs 🐣</h1>
-  <p class="subtitle">Mihaella Geranij 🌿💛</p>
+<div class="hero bg-cover">
+  <div>
+    <h1>Sretan Uskrs 🐣</h1>
+    <p class="subtitle">Mihaella Geranij 🌿💛</p>
+  </div>
 </div>
 
 <!-- CARD -->
@@ -195,7 +212,7 @@ body{
   <p id="typing"></p>
 </div>
 
-<!-- SALON PROMO -->
+<!-- SALON -->
 <div class="salon-promo">
   <h2>💆‍♀️ Mihaella Geranij</h2>
   <p>
@@ -207,7 +224,7 @@ body{
   </button>
 </div>
 
-<!-- QR PROMO -->
+<!-- QR -->
 <div class="qr-promo">
   <h3>🎁 Personalizirane QR čestitke</h3>
   <p>Iznenadi nekoga digitalnom uspomenom koja traje zauvijek 💛</p>
@@ -218,7 +235,6 @@ body{
 
 <div class="footer">Mihaella Geranij 🌸</div>
 
-<!-- FLOAT -->
 <div class="layer" id="layer"></div>
 
 <script>

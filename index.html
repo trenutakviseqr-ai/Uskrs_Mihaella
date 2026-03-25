@@ -14,40 +14,50 @@ body{
   font-family:'Poppins',sans-serif;
   color:#4a3f3f;
   text-align:center;
+  overflow-x:hidden;
   background:#f8f2f4;
 }
 
-/* ===== IMAGE SECTION (BITNO!) ===== */
-.section-bg{
+/* ===== BACKGROUND FIX ===== */
+.bg-section{
   width:100%;
-  padding:60px 20px;
+  min-height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
   flex-direction:column;
+  padding:40px 20px;
 
-  background-color:#f8f2f4; /* fallback */
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain; /* KLJUČNO */
+  background-color:#f8f2f4;
 }
 
-.section-bg img{
-  width:100%;
-  max-width:900px;
-  height:auto;
-  object-fit:contain;
-  border-radius:12px;
+/* overlay za bolju čitljivost */
+.overlay-light{
+  background-color:rgba(255,255,255,0.7);
+  padding:30px 20px;
+  border-radius:20px;
 }
 
-/* ===== INTRO ===== */
+/* INTRO */
 #welcome{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.6);
   display:flex;
   justify-content:center;
   align-items:center;
   flex-direction:column;
   z-index:9999;
-  padding:20px;
+
+  background:
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url("hero.jpg");
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+  background-color:#000;
 }
 
 #welcome h1{
@@ -66,14 +76,14 @@ body{
   cursor:pointer;
 }
 
-/* ===== TEXT ===== */
-.hero-text{
-  margin-top:20px;
+/* HERO */
+.hero{
+  background-image:url("hero1.jpg");
 }
 
-.hero-text h1{
+.hero h1{
   font-family:'Playfair Display';
-  font-size:clamp(28px,5vw,50px);
+  font-size:clamp(30px,5vw,50px);
 }
 
 .subtitle{
@@ -81,7 +91,7 @@ body{
   font-size:clamp(14px,3vw,18px);
 }
 
-/* ===== CARD ===== */
+/* CARD */
 .card{
   max-width:700px;
   margin:40px auto;
@@ -97,7 +107,7 @@ body{
   white-space:pre-line;
 }
 
-/* ===== PROMO ===== */
+/* PROMO */
 .salon-promo,
 .qr-promo{
   max-width:700px;
@@ -123,7 +133,7 @@ h2,h3{
   cursor:pointer;
 }
 
-/* ===== FLOAT ===== */
+/* FLOAT */
 .layer{
   position:fixed;
   inset:0;
@@ -138,11 +148,21 @@ h2,h3{
   to{transform:translateY(-10vh);}
 }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 .footer{
   margin:30px 0;
   font-size:13px;
   opacity:0.7;
+}
+
+/* ===== DESKTOP FIX ===== */
+@media(min-width:900px){
+  .bg-section{
+    background-size:cover; /* desktop može crop jer izgleda bolje */
+  }
+  #welcome{
+    background-size:cover;
+  }
 }
 </style>
 </head>
@@ -155,11 +175,9 @@ h2,h3{
   <button class="openBtn" onclick="startExperience()">Otvori čestitku</button>
 </div>
 
-<!-- HERO IMAGE (UMJESTO BACKGROUND) -->
-<div class="section-bg">
-  <img src="hero1.jpg" alt="Uskrs">
-  
-  <div class="hero-text">
+<!-- HERO -->
+<div class="bg-section hero">
+  <div class="overlay-light">
     <h1>Sretan Uskrs 🐣</h1>
     <p class="subtitle">Mihaella Geranij 🌿💛</p>
   </div>
@@ -185,7 +203,7 @@ h2,h3{
 <!-- QR -->
 <div class="qr-promo">
   <h3>🎁 Personalizirane QR čestitke</h3>
-  <p>Iznenadi nekoga digitalnom uspomenom koja traje zauvijek 💛</p>
+  <p>Iznenadi nekoga digitalnom uspomenom 💛</p>
   <button class="cta" onclick="window.location.href='https://instagram.com/trenutakviseqr'">
     Pogledaj više 💌
   </button>

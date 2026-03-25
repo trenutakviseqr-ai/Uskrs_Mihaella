@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sretan Uskrs 🌸</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Poppins',sans-serif;
+  text-align:center;
+  color:#4a3f3f;
+  overflow-x:hidden;
+  background:linear-gradient(-45deg,#fdf6f7,#f9f0f3,#fceef1,#f8f2f4);
+  background-size:400% 400%;
+  animation:bgMove 20s ease infinite;
+}
+@keyframes bgMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* INTRO */
+#welcome{
+  position:fixed;
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  background:
+    linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)),
+    url("hero.jpg");
+  background-size:cover;
+  background-position:center;
+  z-index:9999;
+}
+#welcome h1{
+  font-family:'Playfair Display';
+  font-size:38px;
+  color:white;
+  text-shadow:1px 1px 6px rgba(0,0,0,0.5);
+  margin-bottom:20px;
+}
+.openBtn{
+  padding:15px 35px;
+  border:none;
+  border-radius:40px;
+  background:linear-gradient(45deg,#d8a7b1,#c48a97);
+  color:white;
+  cursor:pointer;
+  font-size:16px;
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:
+    linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)),
+    url("hero1.jpg");
+  background-size:cover;
+  background-position:center;
+}
+.hero h1{
+  font-family:'Playfair Display';
+  font-size:3em;
+}
+.subtitle{
+  margin-top:10px;
+  font-size:1.2em;
+}
+
+/* CARD */
+.card{
+  max-width:800px;
+  margin:40px auto;
+  background:rgba(255,255,255,0.75);
+  backdrop-filter:blur(15px);
+  padding:35px;
+  border-radius:20px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.1);
+}
+#typing{
+  line-height:1.8em;
+  white-space:pre-line;
+}
+
+/* FLOAT ELEMENTS */
+.layer{
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  pointer-events:none;
+}
+.item{
+  position:absolute;
+  font-size:28px;
+  animation:float linear infinite;
+}
+@keyframes float{
+  from{transform:translateY(100vh);}
+  to{transform:translateY(-10vh);}
+}
+
+/* SALON PROMO */
+.salon-promo{
+  margin-top:60px;
+  padding:50px 20px;
+  background:#ffffff;
+  border-top:1px solid #eee;
+}
+.salon-promo h2{
+  font-family:'Playfair Display';
+  color:#c48a97;
+}
+.cta{
+  margin-top:15px;
+  padding:14px 30px;
+  border:none;
+  border-radius:30px;
+  background:#c48a97;
+  color:white;
+  cursor:pointer;
+}
+
+/* QR PROMO */
+.qr-promo{
+  margin-top:40px;
+  padding:30px 20px;
+  background:#f8eef1;
+  border-radius:20px;
+}
+.qr-promo h3{
+  font-family:'Playfair Display';
+  color:#a06b78;
+}
+
+/* FOOTER */
+.footer{
+  margin-top:20px;
+  font-size:14px;
+  opacity:0.7;
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="welcome">
+  <h1>Uskrsno iznenađenje 🌸</h1>
+  <button class="openBtn" onclick="startExperience()">Otvori čestitku</button>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Sretan Uskrs 🐣</h1>
+  <p class="subtitle">Mihaella Geranij 🌿💛</p>
+</div>
+
+<!-- CARD -->
+<div class="card">
+  <p id="typing"></p>
+</div>
+
+<!-- SALON PROMO -->
+<div class="salon-promo">
+  <h2>💆‍♀️ Mihaella Geranij</h2>
+  <p>
+    Masaže • Depilacije • Pedikura • Anticelulitni tretmani • Maderoterapija  
+    Briga o vašem tijelu i opuštanje na jednom mjestu 💛
+  </p>
+  <button class="cta" onclick="window.location.href='https://www.instagram.com/mihaella_geranij'">
+    Posjeti Instagram 📲
+  </button>
+</div>
+
+<!-- QR PROMO -->
+<div class="qr-promo">
+  <h3>🎁 Personalizirane QR čestitke</h3>
+  <p>Iznenadi nekoga digitalnom uspomenom koja traje zauvijek 💛</p>
+  <button class="cta" onclick="window.location.href='https://instagram.com/trenutakviseqr'">
+    Pogledaj više 💌
+  </button>
+</div>
+
+<div class="footer">Mihaella Geranij 🌸</div>
+
+<!-- FLOAT ELEMENTS -->
+<div class="layer" id="layer"></div>
+
+<script>
+
+/* START */
+function startExperience(){
+  document.getElementById("welcome").style.display="none";
+  createElements();
+  typing();
+}
+
+/* USKRSNE ANIMACIJE */
+function createElements(){
+  const icons=["🐣","🐰","🥚","🌸","🌷"];
+  for(let i=0;i<35;i++){
+    let el=document.createElement("div");
+    el.className="item";
+    el.innerHTML=icons[Math.floor(Math.random()*icons.length)];
+    el.style.left=Math.random()*100+"vw";
+    el.style.animationDuration=(6+Math.random()*10)+"s";
+    el.style.fontSize=(20+Math.random()*20)+"px";
+    document.getElementById("layer").appendChild(el);
+  }
+}
+
+/* TEXT */
+const message=`Dragi klijenti i partneri 🌸,
+
+želimo vam sretan i blagoslovljen Uskrs! 🐣💛
+
+Neka vam ovi blagdani donesu mir, opuštanje i puno lijepih trenutaka.
+
+Hvala vam na povjerenju koje nam pružate 💛
+
+Vaš Mihaella Geranij tim 🌿`;
+
+let i=0;
+function typing(){
+  if(i<message.length){
+    document.getElementById("typing").innerHTML += message.charAt(i);
+    i++;
+    setTimeout(typing,35);
+  }
+}
+
+</script>
+
+</body>
+</html>

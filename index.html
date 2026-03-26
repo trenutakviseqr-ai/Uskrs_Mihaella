@@ -13,124 +13,125 @@
 body{
   font-family:'Poppins',sans-serif;
   color:#4a3f3f;
-  text-align:center;
   overflow-x:hidden;
-  background:#f8f2f4;
+  background:#f1e3e7;
 }
 
-/* ===== BACKGROUND FIX ===== */
-.bg-section{
+/* FULL BG */
+.full-bg{
+  position:relative;
   width:100%;
-  min-height:100vh;
+  min-height:100svh;
   display:flex;
   justify-content:center;
   align-items:center;
-  flex-direction:column;
+  text-align:center;
   padding:40px 20px;
 
-  background-repeat:no-repeat;
+  background-size:cover;
   background-position:center;
-  background-size:contain; /* KLJUČNO */
-  background-color:#f8f2f4;
+  animation:zoomBg 20s ease-in-out infinite alternate;
 }
 
-/* overlay za bolju čitljivost */
-.overlay-light{
-  background-color:rgba(255,255,255,0.7);
-  padding:30px 20px;
-  border-radius:20px;
+/* MAGLA - SVIJETLA */
+.full-bg::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,0.35); /* svijetla lagana magla */
+}
+
+/* CONTENT */
+.content{
+  position:relative;
+  z-index:2;
+  color:#4a3f3f; /* tamna boja za kontrast */
+  max-width:800px;
+  animation:fadeUp 1.2s ease;
+  text-shadow: 0 2px 6px rgba(255,255,255,0.7); /* lagana sjena preko svijetle magle */
 }
 
 /* INTRO */
 #welcome{
   position:fixed;
   inset:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
   z-index:9999;
 
   background:
-    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    linear-gradient(rgba(255,255,255,0.35), rgba(255,255,255,0.35)),
     url("hero.jpg");
-  background-size:contain;
-  background-repeat:no-repeat;
+  background-size:cover;
   background-position:center;
-  background-color:#000;
 }
 
-#welcome h1{
-  color:white;
-  font-family:'Playfair Display';
-  font-size:clamp(26px,5vw,40px);
-}
-
-.openBtn{
+/* BUTTON */
+.openBtn, .cta{
   margin-top:20px;
-  padding:14px 28px;
+  padding:14px 30px;
   border:none;
-  border-radius:30px;
+  border-radius:40px;
   background:#c48a97;
   color:white;
+  font-weight:600;
   cursor:pointer;
+  transition:all 0.3s ease;
+}
+
+.openBtn:hover, .cta:hover{
+  transform:translateY(-4px) scale(1.05);
+  box-shadow:0 15px 30px rgba(0,0,0,0.2);
 }
 
 /* HERO */
 .hero{
-  background-image:url("hero1.jpg");
-}
-
-.hero h1{
-  font-family:'Playfair Display';
-  font-size:clamp(30px,5vw,50px);
-}
-
-.subtitle{
-  margin-top:10px;
-  font-size:clamp(14px,3vw,18px);
+  background-image:linear-gradient(rgba(255,255,255,0.35), rgba(255,255,255,0.35)), url("hero1.jpg");
 }
 
 /* CARD */
 .card{
-  max-width:700px;
-  margin:40px auto;
-  padding:25px 20px;
+  max-width:800px;
+  margin:60px auto;
+  padding:35px 25px;
   background:white;
-  border-radius:15px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  border-radius:25px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.1);
+  animation:fadeUp 1s ease;
 }
 
-#typing{
-  font-size:clamp(14px,3.5vw,17px);
-  line-height:1.7;
-  white-space:pre-line;
-}
-
-/* PROMO */
+/* SECTIONS */
 .salon-promo,
 .qr-promo{
-  max-width:700px;
-  margin:20px auto;
-  padding:25px 20px;
-  border-radius:15px;
+  max-width:800px;
+  margin:30px auto;
+  padding:35px 25px;
+  border-radius:25px;
+  background:white;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  animation:fadeUp 1.2s ease;
 }
 
-.salon-promo{background:white;}
-.qr-promo{background:#f3e7eb;}
+.qr-promo{
+  background:#f3e7eb;
+}
 
-h2,h3{
+/* HEADINGS */
+h1,h2,h3{
   font-family:'Playfair Display';
+  position:relative;
 }
 
-.cta{
-  margin-top:15px;
-  padding:12px 25px;
-  border:none;
-  border-radius:30px;
+/* underline animacija */
+h2::after, h3::after{
+  content:"";
+  display:block;
+  width:0;
+  height:2px;
   background:#c48a97;
-  color:white;
-  cursor:pointer;
+  margin:10px auto 0;
+  transition:0.5s;
+}
+h2:hover::after, h3:hover::after{
+  width:60px;
 }
 
 /* FLOAT */
@@ -143,25 +144,34 @@ h2,h3{
   position:absolute;
   animation:float linear infinite;
 }
+
+/* ANIMATIONS */
 @keyframes float{
-  from{transform:translateY(100vh);}
-  to{transform:translateY(-10vh);}
+  0%{transform:translateY(100vh) rotate(0deg);}
+  100%{transform:translateY(-10vh) rotate(360deg);}
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(40px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes zoomBg{
+  from{background-size:100%;}
+  to{background-size:110%;}
 }
 
 /* FOOTER */
 .footer{
-  margin:30px 0;
-  font-size:13px;
+  text-align:center;
+  margin:50px 0 20px;
   opacity:0.7;
 }
 
-/* ===== DESKTOP FIX ===== */
-@media(min-width:900px){
-  .bg-section{
-    background-size:cover; /* desktop može crop jer izgleda bolje */
-  }
-  #welcome{
-    background-size:cover;
+/* MOBILE */
+@media(max-width:768px){
+  .full-bg::before{
+    background:rgba(255,255,255,0.45);
   }
 }
 </style>
@@ -169,26 +179,24 @@ h2,h3{
 
 <body>
 
-<!-- INTRO -->
-<div id="welcome">
-  <h1>Uskrsno iznenađenje 🌸</h1>
-  <button class="openBtn" onclick="startExperience()">Otvori čestitku</button>
-</div>
-
-<!-- HERO -->
-<div class="bg-section hero">
-  <div class="overlay-light">
-    <h1>Sretan Uskrs 🐣</h1>
-    <p class="subtitle">Mihaella Geranij 🌿💛</p>
+<div id="welcome" class="full-bg">
+  <div class="content">
+    <h1>Uskrsno iznenađenje 🌸</h1>
+    <button class="openBtn" onclick="startExperience()">Otvori čestitku</button>
   </div>
 </div>
 
-<!-- CARD -->
+<div class="hero full-bg">
+  <div class="content">
+    <h1>Sretan Uskrs 🐣</h1>
+    <p>Mihaella Geranij 🌿💛</p>
+  </div>
+</div>
+
 <div class="card">
   <p id="typing"></p>
 </div>
 
-<!-- SALON -->
 <div class="salon-promo">
   <h2>💆‍♀️ Mihaella Geranij</h2>
   <p>
@@ -200,7 +208,6 @@ h2,h3{
   </button>
 </div>
 
-<!-- QR -->
 <div class="qr-promo">
   <h3>🎁 Personalizirane QR čestitke</h3>
   <p>Iznenadi nekoga digitalnom uspomenom 💛</p>
@@ -221,14 +228,14 @@ function startExperience(){
 }
 
 function createElements(){
-  const icons=["🐣","🐰","🥚","🌸","🌷"];
-  for(let i=0;i<30;i++){
+  const icons=["🐣","🐰","🥚","🌸","🌷","🍅"];
+  for(let i=0;i<40;i++){
     let el=document.createElement("div");
     el.className="item";
     el.innerHTML=icons[Math.floor(Math.random()*icons.length)];
     el.style.left=Math.random()*100+"vw";
-    el.style.animationDuration=(6+Math.random()*10)+"s";
-    el.style.fontSize=(18+Math.random()*18)+"px";
+    el.style.animationDuration=(5+Math.random()*8)+"s";
+    el.style.fontSize=(18+Math.random()*22)+"px";
     document.getElementById("layer").appendChild(el);
   }
 }
@@ -248,7 +255,7 @@ function typing(){
   if(i<message.length){
     document.getElementById("typing").innerHTML += message.charAt(i);
     i++;
-    setTimeout(typing,30);
+    setTimeout(typing,25);
   }
 }
 </script>
